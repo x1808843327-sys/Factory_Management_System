@@ -62,7 +62,6 @@ public class PlanningController {
 
         Long equipmentId = 1001L;
 
-
         return restTemplate.getForObject(
                 "http://equipment-monitoring-service/equipment/{equipmentId}",
                 Map.class,

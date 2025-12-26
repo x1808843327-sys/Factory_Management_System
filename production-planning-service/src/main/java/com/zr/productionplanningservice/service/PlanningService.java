@@ -18,12 +18,26 @@ public class PlanningService {
 
     /**
      * 根据订单查询生产计划（模拟）
+     * 质量追溯流程：查询计划并获取设备异常信息
      */
     public Map<String, Object> getPlanByOrder(String orderId) {
         Map<String, Object> result = new HashMap<>();
         result.put("orderId", orderId);
         result.put("planId", "PLAN-001");
         result.put("status", "CREATED");
+
+        // 模拟：根据计划获取分配的设备ID
+        Long equipmentId = 1001L;
+        result.put("equipmentId", equipmentId);
+
+        // 调用设备监控服务查询设备异常记录，用于质量问题追溯
+        Map equipmentExceptions = restTemplate.getForObject(
+                "http://equipment-monitoring-service/equipment/{equipmentId}/exceptions",
+                Map.class,
+                equipmentId
+        );
+        result.put("equipmentExceptions", equipmentExceptions);
+
         return result;
     }
 
