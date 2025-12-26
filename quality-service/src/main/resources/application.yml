@@ -1,0 +1,18 @@
+server:
+  port: 9005
+
+spring:
+  application:
+    name: quality-service
+
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      ip: 127.0.0.1
+      discovery:
+        metadata:
+          version: v1.0
+          service-type: quality
+          workshop: workshop-E
+
+        server-addr: localhost:8848

@@ -1,0 +1,22 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: order-service
+
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      ip: 127.0.0.1
+      discovery:
+        metadata:
+          version: v1.0
+          service-type: order
+          workshop: workshop-A
+
+    sentinel:
+      transport:
+        dashboard: localhost:8858
+        port: 8719
+        client-ip: 127.0.0.1

@@ -1,0 +1,17 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: production-planning-service
+
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      ip: 127.0.0.1
+      discovery:
+        metadata:
+          version: v1.0
+          service-type: planning
+          workshop: workshop-B
+

@@ -1,0 +1,57 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+
+      routes:
+        # 订单服务
+        - id: order-service-route
+          uri: lb://order-service
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - StripPrefix=1
+
+        # 生产计划服务
+        - id: production-planning-service-route
+          uri: lb://production-planning-service
+          predicates:
+            - Path=/api/planning/**
+          filters:
+            - StripPrefix=1
+
+        # 设备监控服务
+        - id: equipment-monitoring-service-route
+          uri: lb://equipment-monitoring-service
+          predicates:
+            - Path=/api/equipment/**
+          filters:
+            - StripPrefix=1
+
+        # 库存管理服务
+        - id: inventory-service-route
+          uri: lb://inventory-service
+          predicates:
+            - Path=/api/inventory/**
+          filters:
+            - StripPrefix=1
+
+        # 质量管理服务
+        - id: quality-service-route
+          uri: lb://quality-service
+          predicates:
+            - Path=/api/quality/**
+          filters:
+            - StripPrefix=1

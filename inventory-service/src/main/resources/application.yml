@@ -1,0 +1,18 @@
+server:
+  port: 9004
+
+spring:
+  application:
+    name: inventory-service
+
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      ip: 127.0.0.1
+      discovery:
+        metadata:
+          version: v1.0
+          service-type: inventory
+          workshop: workshop-D
+
+        server-addr: localhost:8848

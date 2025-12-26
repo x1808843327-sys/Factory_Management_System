@@ -1,0 +1,22 @@
+server:
+  port: 9003
+
+spring:
+  application:
+    name: equipment-monitoring-service
+
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      ip: 127.0.0.1
+      discovery:
+        metadata:
+          version: v1.0
+          service-type: equipment
+          workshop: workshop-c
+
+    sentinel:
+      transport:
+        dashboard: localhost:8858
+        port: 8720
+        client-ip: 127.0.0.1

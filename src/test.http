@@ -1,0 +1,29 @@
+### request 1
+GET http://localhost:8080/api/planning/1001/equipment/check
+
+### request 2
+GET http://localhost:8080/api/planning/1001/equipment/check
+
+### request 3
+GET http://localhost:8080/api/planning/1001/equipment/check
+
+### request 4
+GET http://localhost:8080/api/planning/1001/equipment/check
+
+### request 5
+GET http://localhost:8080/api/planning/1001/equipment/check
+
+### request 6
+GET http://localhost:8080/api/planning/1001/equipment/check
+
+### request 7
+GET http://localhost:8080/api/planning/1001/equipment/check
+
+### request 8
+GET http://localhost:8080/api/planning/1001/equipment/check
+
+### request 9
+GET http://localhost:8080/api/planning/1001/equipment/check
+
+### request 10
+GET http://localhost:8080/api/planning/1001/equipment/check
