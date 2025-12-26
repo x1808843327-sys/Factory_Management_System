@@ -22,14 +22,14 @@ public class EquipmentController {
     private RestTemplate restTemplate;
 
 
-    @PostMapping("/{equipmentId}/report-exception")
+    @PostMapping("/{equipmentId}/exceptions")
     public Map<String, Object> reportException(@PathVariable Long equipmentId) {
         // 1) 查询异常信息（本服务内部）
         Map<String, Object> ex = getEquipmentExceptions(String.valueOf(equipmentId)).getBody();
 
         // 2) 调用生产计划服务：按设备id查计划并调整
         Map planHandle = restTemplate.postForObject(
-                "http://production-planning-service/planning/device/{equipmentId}/exception",
+                "http://production-planning-service/plans/equipment/{equipmentId}/adjustments",
                 null,
                 Map.class,
                 equipmentId
@@ -47,7 +47,7 @@ public class EquipmentController {
        查询设备状态（核心接口）
        ======================= */
 
-    @GetMapping("/{equipmentId}/status")
+    @GetMapping("/{equipmentId}")
     @SentinelResource(
             value = "equipmentStatus",
             blockHandler = "equipmentStatusBlockHandler"

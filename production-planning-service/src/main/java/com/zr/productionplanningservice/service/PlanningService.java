@@ -49,14 +49,14 @@ public class PlanningService {
         materialRequest.put("quantity", 10);
 
         Map inventoryResult = restTemplate.postForObject(
-                "http://inventory-service/inventory/materials/check",
+                "http://inventory-service/inventory/materials/availability",
                 materialRequest,
                 Map.class
         );
 
         // 3️⃣ 调设备服务（负载均衡生效点）
         Map equipmentResult = restTemplate.getForObject(
-                "http://equipment-monitoring-service/equipment/{equipmentId}/status",
+                "http://equipment-monitoring-service/equipment/{equipmentId}",
                 Map.class,
                 1001L
         );
@@ -107,10 +107,9 @@ public class PlanningService {
             Map<String, Object> orderUpdate = new HashMap<>();
             orderUpdate.put("status", "RESCHEDULED");
 
-            restTemplate.postForObject(
-                    "http://order-service/order/" + orderId + "/status",
-                    orderUpdate,
-                    Map.class
+            restTemplate.put(
+                    "http://order-service/orders/" + orderId,
+                    orderUpdate
             );
         } else {
             // 无可用设备，只能等待
@@ -121,10 +120,9 @@ public class PlanningService {
             Map<String, Object> orderUpdate = new HashMap<>();
             orderUpdate.put("status", "WAITING_FOR_DEVICE");
 
-            restTemplate.postForObject(
-                    "http://order-service/order/" + orderId + "/status",
-                    orderUpdate,
-                    Map.class
+            restTemplate.put(
+                    "http://order-service/orders/" + orderId,
+                    orderUpdate
             );
         }
 

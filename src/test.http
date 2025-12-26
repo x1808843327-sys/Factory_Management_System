@@ -1,29 +1,29 @@
 ### request 1
-GET http://localhost:8080/api/planning/1001/equipment/check
+GET http://localhost:8080/api/plans/1001/equipment/availability
 
 ### request 2
-GET http://localhost:8080/api/planning/1001/equipment/check
+GET http://localhost:8080/api/plans/1001/equipment/availability
 
 ### request 3
-GET http://localhost:8080/api/planning/1001/equipment/check
+GET http://localhost:8080/api/plans/1001/equipment/availability
 
 ### request 4
-GET http://localhost:8080/api/planning/1001/equipment/check
+GET http://localhost:8080/api/plans/1001/equipment/availability
 
 ### request 5
-GET http://localhost:8080/api/planning/1001/equipment/check
+GET http://localhost:8080/api/plans/1001/equipment/availability
 
 ### request 6
-GET http://localhost:8080/api/planning/1001/equipment/check
+GET http://localhost:8080/api/plans/1001/equipment/availability
 
 ### request 7
-GET http://localhost:8080/api/planning/1001/equipment/check
+GET http://localhost:8080/api/plans/1001/equipment/availability
 
 ### request 8
-GET http://localhost:8080/api/planning/1001/equipment/check
+GET http://localhost:8080/api/plans/1001/equipment/availability
 
 ### request 9
-GET http://localhost:8080/api/planning/1001/equipment/check
+GET http://localhost:8080/api/plans/1001/equipment/availability
 
 ### request 10
-GET http://localhost:8080/api/planning/1001/equipment/check
+GET http://localhost:8080/api/plans/1001/equipment/availability

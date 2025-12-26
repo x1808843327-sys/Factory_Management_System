@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class OrderController {
 
     @Value("${server.port}")
@@ -53,7 +53,7 @@ public class OrderController {
     /**
      * 创建订单
      */
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<?> createOrder(@RequestBody CreateOrderRequest request) {
 
         Map<String, Object> orderResult = orderService.createOrder(request);
@@ -64,7 +64,7 @@ public class OrderController {
         planRequest.put("quantity", 10);
 
         Map<String, Object> planResult = restTemplate.postForObject(
-                "http://production-planning-service/planning/create",
+                "http://production-planning-service/plans",
                 planRequest,
                 Map.class
         );
@@ -77,7 +77,7 @@ public class OrderController {
     /**
      * 更新订单状态
      */
-    @PostMapping("/{orderId}/status")
+    @PutMapping("/{orderId}")
     public ResponseEntity<?> updateOrderStatus(
             @PathVariable String orderId,
             @RequestBody Map<String, Object> body) {
@@ -92,7 +92,7 @@ public class OrderController {
     /**
      * 接收质量反馈
      */
-    @PostMapping("/{orderId}/quality-feedback")
+    @PostMapping("/{orderId}/quality-feedbacks")
     public ResponseEntity<?> receiveQualityFeedback(
             @PathVariable String orderId,
             @RequestBody QualityFeedbackRequest request) {

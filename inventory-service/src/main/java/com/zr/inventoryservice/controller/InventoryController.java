@@ -27,7 +27,7 @@ public class InventoryController {
     /**
      * 检查物料可用性
      */
-    @PostMapping("/materials/check")
+    @PostMapping("/materials/availability")
     public Map<String, Object> checkMaterialAvailability(
             @RequestBody MaterialCheckRequest request) {
         return inventoryService.checkMaterial(request);

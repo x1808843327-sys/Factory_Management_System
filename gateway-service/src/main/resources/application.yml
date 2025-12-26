@@ -20,7 +20,7 @@ spring:
         - id: order-service-route
           uri: lb://order-service
           predicates:
-            - Path=/api/order/**
+            - Path=/api/orders/**
           filters:
             - StripPrefix=1
 
@@ -28,7 +28,7 @@ spring:
         - id: production-planning-service-route
           uri: lb://production-planning-service
           predicates:
-            - Path=/api/planning/**
+            - Path=/api/plans/**
           filters:
             - StripPrefix=1
 

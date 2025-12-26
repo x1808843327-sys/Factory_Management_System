@@ -59,7 +59,7 @@ public class OrderService {
 
         // 2️⃣ 查询生产计划
         Map planResult = restTemplate.getForObject(
-                "http://production-planning-service/planning/by-order/{orderId}",
+                "http://production-planning-service/plans/by-order/{orderId}",
                 Map.class,
                 orderId
         );

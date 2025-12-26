@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/planning")
+@RequestMapping("/plans")
 public class PlanningController {
 
     @Value("${server.port}")
@@ -36,7 +36,7 @@ public class PlanningController {
      * 2. 物料可用性检查
      * 3. 设备可用性检查
      */
-    @PostMapping("/create")
+    @PostMapping
     public Map<String, Object> createPlan(
             @RequestBody CreatePlanRequest request) {
 
@@ -57,14 +57,14 @@ public class PlanningController {
     /**
      * 正常生产流程：检查设备运行状态
      */
-    @GetMapping("/{planId}/equipment/check")
+    @GetMapping("/{planId}/equipment/availability")
     public Map<String, Object> checkEquipment(@PathVariable String planId) {
 
         Long equipmentId = 1001L;
 
 
         return restTemplate.getForObject(
-                "http://equipment-monitoring-service/equipment/{equipmentId}/status",
+                "http://equipment-monitoring-service/equipment/{equipmentId}",
                 Map.class,
                 equipmentId
         );
@@ -73,7 +73,7 @@ public class PlanningController {
     /**
      * 正常生产流程：检查物料是否充足
      */
-    @PostMapping("/{planId}/materials/check")
+    @PostMapping("/{planId}/materials/availability")
     public Map<String, Object> checkMaterials(
             @PathVariable String planId,
             @RequestBody Map<String, Object> request) {
@@ -92,7 +92,7 @@ public class PlanningController {
             inventoryRequest.put("quantity", quantity);
 
             Map<String, Object> inventoryResult = restTemplate.postForObject(
-                    "http://inventory-service/inventory/materials/check",
+                    "http://inventory-service/inventory/materials/availability",
                     inventoryRequest,
                     Map.class
             );
@@ -128,7 +128,7 @@ public class PlanningController {
      * 设备异常处理入口
      * 由设备监控服务调用
      */
-    @PostMapping("/device/{equipmentId}/exception")
+    @PostMapping("/equipment/{equipmentId}/adjustments")
     public Map<String, Object> handleDeviceException(
             @PathVariable Long equipmentId) {
 

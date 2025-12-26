@@ -43,9 +43,9 @@ public class QualityService {
         orderFeedback.put("qualityResult", "FAIL");
 
         Map orderResult = restTemplate.postForObject(
-                "http://order-service/order/"
+                "http://order-service/orders/"
                         + request.getOrderId()
-                        + "/quality-feedback",
+                        + "/quality-feedbacks",
                 orderFeedback,
                 Map.class
         );
